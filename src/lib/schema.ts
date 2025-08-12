@@ -1,6 +1,7 @@
-//src/lib/schema.ts
-import { createSchema } from 'graphql-yoga'
+// src/lib/schema.ts
+import { createSchema } from 'graphql-yoga';
 import { mockPosts } from './mockData';
+import { GraphQLSchema } from 'graphql';
 
 export const schema = createSchema({
   typeDefs: `
@@ -25,4 +26,4 @@ export const schema = createSchema({
       },
     },
   },
-});
+}) as GraphQLSchema;

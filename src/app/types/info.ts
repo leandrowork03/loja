@@ -13,3 +13,4 @@ export type InformationParams = {
     id: string;
   };
 };
+

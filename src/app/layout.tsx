@@ -1,7 +1,7 @@
 import { Header } from "./components/header";
 import "./globals.css";
-
-
+import { Providers } from "@/lib/providers"; // ApolloProvider
+import CartProvider from "@/contexts/cartContext";
 
 export default function RootLayout({
   children,
@@ -11,8 +11,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header/>
-        {children}
+        <Providers> {/* Apollo Client */}
+          <CartProvider> {/* Carrinho */}
+            <Header />
+            {children}
+          </CartProvider>
+        </Providers>
       </body>
     </html>
   );
