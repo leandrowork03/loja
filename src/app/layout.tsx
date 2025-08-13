@@ -2,6 +2,7 @@ import { Header } from "./components/header";
 import "./globals.css";
 import { Providers } from "@/lib/providers"; // ApolloProvider
 import CartProvider from "@/contexts/cartContext";
+import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({
   children,
@@ -11,8 +12,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers> {/* Apollo Client */}
-          <CartProvider> {/* Carrinho */}
+        <Providers> 
+          <CartProvider> 
+           <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
             <Header />
             {children}
           </CartProvider>

@@ -1,8 +1,7 @@
-// src/app/posts/[id]/page.tsx
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { Post, InformationParams } from '@/app/types/info'; // Ajuste caminho conforme
-import Link from "next/link";
+import { Post, InformationParams } from '@/app/types/info';
+import { AddToCartButton } from "./components/AddToCartButton"; // Importa o novo componente
 
 export default async function PostPage({ params }: InformationParams) {
   const { id } = params;
@@ -46,7 +45,7 @@ export default async function PostPage({ params }: InformationParams) {
   const { title, price, description, img } = postData;
 
   return (
-    <article className="prose max-w-none text-white bg-black p-4 rounded-lg shadow-lg">
+    <article className="prose max-w-none p-4 rounded-lg shadow-lg">
       <h1 className="text-sky-700 text-4xl font-bold py-6">{title}</h1>
 
       {img && (
@@ -54,12 +53,16 @@ export default async function PostPage({ params }: InformationParams) {
           <Image src={img} alt={title} width={600} height={400} className="rounded-md" />
         </div>
       )}
-
-      <p className="text-lg font-semibold mb-4">Preço: R$ {price.toFixed(2)}</p>
-
-      <div className="text-gray-200 leading-relaxed" >
+      <div>
+        <p className="text-lg font-semibold mb-4">
+          Preço: R$ {price.toFixed(2)}
+        </p>
+        <AddToCartButton item={postData} /> {/* Usa o componente de cliente e passa os dados */}
+      </div>
+      <div>
         {description}
       </div>
     </article>
   );
 }
+
