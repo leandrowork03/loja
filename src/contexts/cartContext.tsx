@@ -5,8 +5,8 @@ import { createContext, useState, type ReactNode } from "react";
 import type { Post as Product } from "@/app/types/info";
 
 export interface CartItem extends Product {
-  amount: number; // quantidade no carrinho
-  total: number;  // subtotal (price * amount)
+  amount: number; 
+  total: number; 
 }
 
 export interface CartContextData {

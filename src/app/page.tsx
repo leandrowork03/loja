@@ -4,36 +4,30 @@
 import { BiSolidCartAdd } from "react-icons/bi";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useQuery, gql } from "@apollo/client";
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useRef } from "react"; 
 import { CartContext } from "@/contexts/cartContext";
 import toast from "react-hot-toast";
 import type { Post as Product } from "@/app/types/info";
 import Link from "next/link";
 import { BannerCarousel } from "./posts/[id]/components/BannerCarousel";
+import { Footer } from "./components/footer";
 
-// Dados dos banners com os caminhos corretos (ajustados para /img)
 const bannerImages = [
   {
     id: '1',
-    imgSrc: '/img/banner-devshop-1.jpg', // Caminho correto
+    imgSrc: '/img/banner-devshop-1.jpg',
     altText: 'Banner de oferta de smartphones',
     link: '/promocao/smartphones',
   },
   {
     id: '2',
-    imgSrc: '/img/banner-devshop-2.jpg', // Caminho correto
-    altText: 'Banner de oferta de laptops',
-    link: '/promocao/laptops',
-  },
-  {
-    id: '3',
-    imgSrc: '/img/banner-devshop-3.jpg', // Caminho correto
+    imgSrc: '/img/banner-devshop-3.jpg',
     altText: 'Banner de liquidação de TVs',
     link: '/promocao/tvs',
   },
 ];
 
-const GET_PRODUCTS = gql`
+ const GET_PRODUCTS = gql`
   query GetProducts {
     posts {
       id
@@ -60,14 +54,6 @@ export default function Home() {
       carouselRef.current.scrollTo({ left: scrollAmount, behavior: "smooth" });
     }
   };
-
-  useEffect(() => {
-    if (!data?.posts || data.posts.length === 0) return;
-    const interval = setInterval(() => {
-      scroll("right");
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [data]);
 
   function adicionar(item: Product) {
     toast.success("Produto adicionado ao carrinho!");
@@ -98,7 +84,7 @@ export default function Home() {
 
         <div
           ref={carouselRef}
-          className="flex overflow-x-auto gap-4 scroll-smooth px-10 py-4 no-scrollbar"
+          className="flex overflow-x-auto gap-4 scroll-smooth px-10 py-4 no-scrollbar max-w-7xl m-auto bg-white rounded-2xl"
         >
           {data?.posts.map((item) => (
             <section
@@ -122,7 +108,7 @@ export default function Home() {
                 </p>
                 <button
                   onClick={() => adicionar(item)}
-                  className="hover:text-green-500 transition-colors"
+                  className="hover:text-green-500 transition-colors "
                 >
                   <BiSolidCartAdd size={25} />
                 </button>
@@ -138,6 +124,11 @@ export default function Home() {
           <ChevronRight size={24} />
         </button>
       </div>
+      <div className="flex flex-col md:flex-row items-center max-w-7xl m-auto bg-white rounded-2xl mt-20 p-5">
+        <img src="/img/logo.png" alt="logo rounded-2xl" />
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium asperiores in eaque, omnis recusandae voluptate enim modi possimus magni, dignissimos, officia aspernatur nulla quisquam nihil maiores suscipit consectetur voluptates perferendis molestias placeat fugit? Ab delectus nam animi eum repellendus, aspernatur, sequi vero nulla quasi deleniti ex reprehenderit maxime earum minima.</p>
+      </div>
+      <Footer/>
     </>
   );
 }

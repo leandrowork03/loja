@@ -8,3 +8,4 @@ import client from './apolloClient';
 export function Providers({ children }: { children: React.ReactNode }) {
   return <ApolloProvider client={client}>{children}</ApolloProvider>;
 }
+

@@ -1,6 +1,6 @@
 import { Header } from "./components/header";
 import "./globals.css";
-import { Providers } from "@/lib/providers"; // ApolloProvider
+import { Providers } from "@/lib/providers"; 
 import CartProvider from "@/contexts/cartContext";
 import { Toaster } from "react-hot-toast";
 

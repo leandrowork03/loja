@@ -45,13 +45,13 @@ export const BannerCarousel = ({ banners }: BannerCarouselProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       scroll('right');
-    }, 5000); // Rola automaticamente a cada 5 segundos
+    }, 5000); 
     return () => clearInterval(interval);
   }, [currentIndex, banners.length]);
 
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto my-8">
+    <div className="relative w-full max-w-7xl mx-auto my-8 hidden md:block">
       <div
         ref={carouselRef}
         className="flex overflow-x-hidden gap-0 scroll-smooth rounded-lg shadow-lg"
@@ -61,8 +61,8 @@ export const BannerCarousel = ({ banners }: BannerCarouselProps) => {
             <Image
               src={banner.imgSrc}
               alt={banner.altText}
-              width={1600}
-              height={400}
+              width={1000}
+              height={300}
               className="object-cover w-full h-auto"
             />
           </div>
